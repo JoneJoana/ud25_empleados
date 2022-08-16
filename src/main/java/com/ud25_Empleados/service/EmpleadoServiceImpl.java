@@ -33,7 +33,7 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
 	}
 
 	public List<Empleados> findByName(String name){
-		return iEmpleadoDao.findByName(name);
+		return iEmpleadoDao.findByNombre(name);
 	}
 	
 	@Override  

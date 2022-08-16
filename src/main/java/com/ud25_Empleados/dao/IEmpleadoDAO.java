@@ -18,6 +18,6 @@ public interface IEmpleadoDAO extends JpaRepository<Empleados,String>{
 
 	public void deleteByDNI(String dni);
 	
-	public List<Empleados> findByName(String name);
+	public List<Empleados> findByNombre(String name);
 	
 }

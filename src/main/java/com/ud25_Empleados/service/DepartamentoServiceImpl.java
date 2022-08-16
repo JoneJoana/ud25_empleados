@@ -3,10 +3,12 @@ package com.ud25_Empleados.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ud25_Empleados.dao.IDepartamentoDAO;
 import com.ud25_Empleados.dto.Departamentos;
 
+@Service
 public class DepartamentoServiceImpl implements IDepartamentoService{
 
 	@Autowired

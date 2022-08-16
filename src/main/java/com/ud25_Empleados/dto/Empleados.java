@@ -4,12 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="empleado")//en caso que la tabla sea diferente
+@Table(name="empleados")//en caso que la tabla sea diferente
 public class Empleados {
 
 	//Atributos de entidad empleado
@@ -22,9 +22,9 @@ public class Empleados {
 	@Column(name = "apellidos")//no hace falta si se llama igual
 	private String apellidos;	
 	
-	@ManyToOne
+	@OneToOne
     @JoinColumn(name="departamento")
-    private Departamentos Departamento;
+    private Departamentos departamento;
 	
 	//Constructores
 	public Empleados() {	}	
@@ -34,14 +34,14 @@ public class Empleados {
 		this.DNI = DNI;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		Departamento = departamento;
+		this.departamento = departamento;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Empleados [DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", Departamento="
-				+ Departamento + "]";
+				+ departamento + "]";
 	}
 
 
@@ -77,12 +77,12 @@ public class Empleados {
 
 
 	public Departamentos getDepartamento() {
-		return Departamento;
+		return departamento;
 	}
 
 
 	public void setDepartamento(Departamentos departamento) {
-		Departamento = departamento;
+		this.departamento = departamento;
 	}
 		
 }

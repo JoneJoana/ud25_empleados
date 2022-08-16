@@ -2,6 +2,8 @@ package com.ud25_Empleados.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,33 +45,31 @@ public class EmpleadoController {
 		return empleadoServiceImpl.findByName(nombre);
 	}
 	
-	@PostMapping("/empleados")
+	@PostMapping("/empleados")  //tambien actualiza si ya existe
 	public String guardarEmpleado(@RequestBody Empleados empleado) {
 		//validar datos que entran por body
-		Empleados empleadoInput = new Empleados(empleado.getDNI(),empleado.getNombre(),empleado.getApellidos(),empleado.getDepartamento());				
+		Empleados empleadoInput = new Empleados(empleado.getNombre(),empleado.getApellidos(),empleado.getDepartamento());		
+		empleadoInput.setDNI(empleado.getDNI());
+		
 		empleadoServiceImpl.saveEmpleado(empleadoInput);
 		return "Empleado "+ empleadoInput.getDNI()+" guardado.";
 	}
 	
 	@DeleteMapping("/empleados/{dni}")
+	@Transactional
 	public void eliminarEmpleado(@PathVariable(name="dni") String dni) {
 		empleadoServiceImpl.deleteEmpleado(dni);
 	}
 	
 	@PutMapping("/empleados/{dni}")
 	public Empleados guardarEmpleado(@PathVariable(name="dni") String dni, @RequestBody Empleados empleado) {
-		Empleados empleado_selec = new Empleados();
-		Empleados empleado_actualizado = new Empleados();
-		
-		empleado_selec = empleadoServiceImpl.findByDNI(dni);
+		Empleados empleado_selec = empleadoServiceImpl.findByDNI(dni);
 		
 		empleado_selec.setNombre(empleado.getNombre());
 		empleado_selec.setApellidos(empleado.getApellidos());
-		empleado_selec.setDepartamento(empleado.getDepartamento());	
+		empleado_selec.setDepartamento(empleado.getDepartamento());		
 		
-		empleado_actualizado = empleadoServiceImpl.saveEmpleado(empleado_selec);
-		
-		return empleado_actualizado;
+		return empleadoServiceImpl.saveEmpleado(empleado_selec);
 	}
 	
 }

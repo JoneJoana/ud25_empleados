@@ -29,7 +29,7 @@ public class Departamentos {
 	private int presupuesto;
 	
 	@OneToMany
-    @JoinColumn(name="dni_empl")
+    @JoinColumn(name="DNI_empl")
     private List<Empleados> empleados;
 	
 	public Departamentos() {}

@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -22,16 +22,15 @@ public class Empleados {
 	@Column(name = "apellidos")//no hace falta si se llama igual
 	private String apellidos;	
 	
-	@OneToOne
+	@ManyToOne
     @JoinColumn(name="departamento")
     private Departamentos departamento;
 	
 	//Constructores
-	public Empleados() {	}	
+	private Empleados(){}	
 	
 	
-	public Empleados(String DNI, String nombre, String apellidos, Departamentos departamento) {
-		this.DNI = DNI;
+	public Empleados(String nombre, String apellidos, Departamentos departamento) {
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.departamento = departamento;
@@ -49,17 +48,14 @@ public class Empleados {
 	public String getDNI() {
 		return DNI;
 	}
-
-
+	
 	public void setDNI(String dNI) {
 		DNI = dNI;
 	}
 
-
 	public String getNombre() {
 		return nombre;
 	}
-
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

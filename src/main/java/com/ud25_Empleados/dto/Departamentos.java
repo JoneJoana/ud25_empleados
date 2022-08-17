@@ -8,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,8 +27,8 @@ public class Departamentos {
 	@Column(name = "presupuesto")
 	private int presupuesto;
 	
-	@OneToMany
-    @JoinColumn(name="DNI_empl")
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "departamento")//mappedBy la variable de Empleados que hace ref a Departamentos
     private List<Empleados> empleados;
 	
 	public Departamentos() {}
@@ -62,8 +61,6 @@ public class Departamentos {
 	/**
 	 * @return los empleados
 	 */
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "empleados")
 	public List<Empleados> getEmpleados() {
 		return empleados;
 	}

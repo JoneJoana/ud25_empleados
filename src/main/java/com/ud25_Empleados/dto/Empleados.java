@@ -30,7 +30,8 @@ public class Empleados {
 	private Empleados(){}	
 	
 	
-	public Empleados(String nombre, String apellidos, Departamentos departamento) {
+	public Empleados(String Dni,String nombre, String apellidos, Departamentos departamento) {
+		this.DNI = Dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.departamento = departamento;

@@ -47,12 +47,24 @@ public class EmpleadoController {
 	
 	@PostMapping("/empleados")  //tambien actualiza si ya existe
 	public String guardarEmpleado(@RequestBody Empleados empleado) {
-		//validar datos que entran por body
-		Empleados empleadoInput = new Empleados(empleado.getNombre(),empleado.getApellidos(),empleado.getDepartamento());		
-		empleadoInput.setDNI(empleado.getDNI());
+		boolean exists = false;
 		
-		empleadoServiceImpl.saveEmpleado(empleadoInput);
-		return "Empleado "+ empleadoInput.getDNI()+" guardado.";
+		for (Empleados f : empleadoServiceImpl.listEmpleados()) {
+			if(f.getDNI().equals(empleado.getDNI())) {
+				exists = true;
+			}
+		}
+		if(!exists) {
+			empleadoServiceImpl.saveEmpleado(empleado);
+			return "Empleado "+ empleado.getDNI()+" guardado!";
+		}
+		return "Empleado ya existe";		
+		
+		//validar datos que entran por body
+		//Empleados empleadoInput = new Empleados(empleado.getDNI(),empleado.getNombre(),empleado.getApellidos(),empleado.getDepartamento());		
+				
+		//empleadoServiceImpl.saveEmpleado(empleadoInput);
+		//return "Empleado "+ empleadoInput.getDNI()+" guardado.";
 	}
 	
 	@DeleteMapping("/empleados/{dni}")

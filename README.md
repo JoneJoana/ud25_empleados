@@ -1,5 +1,14 @@
 # U25_Empleados
 
+## T25 - en local - Info Commit
+```
+Commits on Aug 16, 2022
+
+fix empleados 
+
+commit 22564d7d4a30673f2c52816cefc7ce41a94aaa3d
+```
+
 ## API departamentos
 
 ### GET:

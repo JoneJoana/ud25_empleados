@@ -9,6 +9,8 @@ fix empleados
 commit 22564d7d4a30673f2c52816cefc7ce41a94aaa3d
 ```
 
+## T26 - DEPLOY HEROKU --> ultima version 
+
 ## API departamentos
 
 ### GET:
